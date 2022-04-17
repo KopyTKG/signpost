@@ -31,6 +31,9 @@
       "react-app/jest"
     ]
   },
+  "resolutions": {
+    "postcss-custom-properties": "^9.1.1"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
