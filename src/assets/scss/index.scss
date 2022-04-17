@@ -1,7 +1,150 @@
-/* IDK what is wrong here */
-@import "./components/variables";
-@import "./components/plugins/sky";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
-@import "./components/general";
-@import "./components/linkbox";
-@import "./components/profile";
+/* Document settings */
+$DocumentHeight: 100vh;
+$DocumentWidth: 100vw;
+
+/* Main background settings */
+
+$MainTop: rgb(0,0,0);
+$MainBottom: rgb(34, 34, 34);
+
+/* sky background settings */
+
+$DarkTop: rgb(0,0,0);
+$DarkBottom: rgb(4, 0, 44);
+$LightTop: rgb(5, 0, 65);
+$LightBottom: rgb(28, 62, 94);
+
+// Custom variables
+$form-padding: 1em;
+$layout-blue: #119ce2;
+$gray-600: #6c757d;
+
+$text: white;
+
+
+// Text
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+body {
+  padding: 2vh 0;
+}
+
+.text-url {
+  color: $gray-600;
+}
+
+.text-v-center {
+  line-height: 50px;
+}
+
+.border-round {
+  border-radius: 50%;
+}
+
+.center {
+  margin: auto;
+}
+
+.form-a {
+  text-decoration: none;
+  color: $text;
+}
+
+.form-linkbox {
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  fill: rgb(73, 73, 73);
+
+  & .row-full {
+    width: max-content;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -0.5);
+    margin-left: calc(var(--bs-gutter-x) * -0.5);
+  }
+  margin: 0.2em 0;
+  font-weight: 600;
+  //padding / margin
+  padding: $form-padding;
+
+  // size
+  height: max-content;
+  //   width: 50em;
+
+  // Background
+  border: 1px solid rgb(73, 73, 73);
+
+  border-radius: 25px;
+}
+
+
+.profile-img {
+    background: white;
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+  }
+  .profile-user {
+    color: $text;
+    line-height: 4em;
+    text-align: start;
+  }
+
+  .profile-description {
+    color: $gray-600;
+    height: 4em;
+    text-align: start ;
+  }
+
+
+  .sky {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient($DarkTop 0%, $DarkBottom 25%, $LightTop 50%, $LightBottom 100%);
+    width: $DocumentWidth;
+    height: $DocumentHeight;
+}
+
+#sky {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#star {
+    margin: 0;
+    padding: 0;
+    width: 150vh;
+    height: 100vw;
+    position: fixed;
+    overflow: hidden;
+    transform: translateX(calc(50vw - 50%)) translateY(calc(50vh - 50%)) rotate(120deg);
+}
+
+.balloon {
+    position: absolute;
+    top: 325vh;
+    left: 75vw;
+    fill: white;
+    height: 5em;
+}
+
+.moon{
+    position: absolute;
+    top: 100vh;
+    left: 60vw;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 5px 2px 0px 0px #fff; 
+}
