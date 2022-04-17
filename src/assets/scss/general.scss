@@ -4,38 +4,9 @@
 
 * {
   font-family: "Roboto", sans-serif;
-  font-size: $p-size;
 }
-h1 {
-  font-size: $h1-size;
-}
-h2 {
-  font-size: $h2-size;
-}
-h3 {
-  font-size: $h3-size;
-}
-
 body {
   padding: 2vh 0;
-}
-
-// Buttons
-
-button {
-  color: $font-color;
-  padding: 5pt 10pt;
-  font-size: $p-size;
-  background-color: $layout-blue;
-  border: 3px solid $layout-darker-blue;
-  border-radius: 10pt;
-  transition: 0.3s;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $layout-lighter-blue;
-    border-color: #fff;
-  }
 }
 
 .text-url {

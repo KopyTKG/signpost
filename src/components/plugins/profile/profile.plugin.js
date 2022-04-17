@@ -14,6 +14,7 @@ function Profile(props){
                 <Row className="form-linkbox">
                     <Col xs="5"><img src={props.img} className="profile-img"
                     style={{background: props.background}}
+                    alt="profile pic"
                     /></Col>
                     <Col>
                         <Row>

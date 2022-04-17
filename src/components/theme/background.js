@@ -2,10 +2,6 @@ import React from "react";
 import anime from "animejs"
 
 class Background extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-
     state = {
       num: this.props.density,
       vw: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
