@@ -1,24 +1,33 @@
-import React from "react";
-import ThemePlugin from "components/plugins/theme/theme.plugin";
+import React, {useState} from "react";
 import { Col, Container, Row } from "reactstrap";
 import Linkbox from "components/plugins/linkbox/linkbox.plugin";
 import input from "../../custom/links.info";
 import info from "../../custom/profile.info"
 import Profile from "components/plugins/profile/profile.plugin";
+import Background from "components/theme/background";
 
 
 
 function Admin(props) {
-  const [loaded, setLoaded] = React.useState(false);
-  const [slots, setSlots] = React.useState([]);
-  const [profile, setProfile] = React.useState(
+  const [loaded, setLoaded] = useState(false);
+  const [slots, setSlots] = useState([]);
+  const [profile, setProfile] = useState(
     {
       img: "", 
       user: "",
       description: "",
       background: "rgb(5,92,152)"  
     });
-
+  const [limit, setLimit] = useState(false);
+  const [density, setDensity] = useState(950);
+  const Mount = () => {
+      let vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      if(vw < 1000) 
+      {   
+          setDensity(100);
+      }
+      setLimit(true);
+  }
   const handleOnload = () => {
     setSlots(input);
     setLoaded(true);
@@ -28,6 +37,7 @@ function Admin(props) {
   return (
         <React.Fragment>
             {loaded? null: handleOnload()}
+            {!limit? Mount(): null}
             <div ref={mainPanelRef}>
               <Container>
                 <Row>
@@ -45,7 +55,6 @@ function Admin(props) {
                 <Row>
                   <Col xl="2" lg="2" />
                   <Col xl="8" lg="8" md="12">
-                    {/* <Linkbox active={true} handelNewSlot={handelNewSlot}/> */}
                     {
                       slots.map((el) => {
                         return(
@@ -58,7 +67,7 @@ function Admin(props) {
                 </Row>
               </Container>
             </div>
-          <ThemePlugin />
+            <Background density={density}/>
         </React.Fragment>
   );
 }

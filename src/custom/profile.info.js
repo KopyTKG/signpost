@@ -5,7 +5,7 @@ const data = {
     img: logo,
     user: "@KopyTKG",
     // text under name
-    description: "testing data from custom input file",
+    description: "Hey there, welcome to signpost. Here are all my links. All platforms where you can find me on. So see you there.",
     // background is only used when img is not loaded
     /* to set color you can use
         * rgb(r,g,b)

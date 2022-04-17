@@ -1,11 +1,12 @@
 .profile {
   .profile-img {
-    background: black;
+    background: white;
     width: 8em;
     height: 8em;
     border-radius: 50%;
   }
   .profile-user {
+    color: $text;
     line-height: 4em;
     text-align: start !important;
   }

@@ -16,11 +16,46 @@
 
 const data = [
     {
-        type: 'at',
-        name: 'template', 
-        url: 'custom url', 
-        show: true,
-        disclick: true
+        type: "site",
+        name: "Personal website",
+        url: "https://definitelynotawebsite.website",
+        show: false,
+        disclick: false
+    },
+    {
+        type: "twitter",
+        name: "Twitter",
+        url: "https://twitter.com/kopy_tkg",
+        show: false,
+        disclick: false
+    },
+    {
+        type: "facebook",
+        name: "Facebook",
+        url: "https://www.facebook.com/Kopyy/",
+        show: false,
+        disclick: false
+    },
+    {
+        type: "twitch",
+        name: "Twitch",
+        url: "https://www.twitch.tv/kopytkg",
+        show: false,
+        disclick: false
+    },
+    {
+        type: "instagram",
+        name: "Instagram",
+        url: "https://www.instagram.com/kopy_tkg/",
+        show: false,
+        disclick: false
+    },
+    {
+        type: "discord",
+        name: "Discord",
+        url: "https://discord.gg/ZtjNUMHm8C",
+        show: false,
+        disclick: false
     },
 ];
 

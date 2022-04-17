@@ -1,6 +1,14 @@
-@import "./variables";
+$text: white;
+
+.form-a {
+  text-decoration: none;
+  color: $text;
+}
 
 .form-linkbox {
+  background-color: rgba($color: #000000, $alpha: 0.8);
+  fill: rgb(73, 73, 73);
+
   & .row-full {
     width: max-content;
     margin: auto;
@@ -20,34 +28,7 @@
   //   width: 50em;
 
   // Background
-  border: 1px solid $border-gray;
+  border: 1px solid rgb(73, 73, 73);
 
   border-radius: 25px;
-
-  input[type="text"] {
-    font-weight: 600;
-    color: black;
-    line-height: $line-height;
-    width: 100%;
-    border-radius: $input-radius;
-    border: solid 2px transparent;
-    &:focus {
-      outline-width: 0;
-      border: solid 2px darkcyan;
-    }
-  }
-  // input[type="color"] {
-  //   float: right;
-  //   padding: 0;
-  //   overflow: hidden;
-  //   border: none;
-  // }
-
-  .form-submit {
-    margin-top: 1em;
-    height: $button-height;
-    border-radius: $input-radius;
-    font-weight: 500;
-    float: right;
-  }
 }
