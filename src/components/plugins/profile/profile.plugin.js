@@ -12,10 +12,14 @@ function Profile(props){
             <Col xl="1" lg="1"/>
             <Col xl="10" lg="1" md="12">
                 <Row className="form-linkbox">
-                    <Col xs="5"><img src={props.img} className="profile-img"
-                    style={{background: props.background}}
-                    alt="profile pic"
-                    /></Col>
+                    <Col xs="5">
+                    <div className="profile-img">
+                        <img src={props.img} className="profile-img"
+                        style={{background: props.background}}
+                        alt="profile pic"
+                        />
+                    </div>
+                    </Col>
                     <Col>
                         <Row>
                             <Col className="profile-user">
