@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { Col, Row } from "reactstrap";
-import SVGloader from "../svg/loader.plugin";
+import SVGloader from "../middleware/loader.component";
 
 function Linkbox(props){     
     return (

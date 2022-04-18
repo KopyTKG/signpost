@@ -1,25 +1,9 @@
 @import "./components/variables";
 @import "./components/default";
 @import "./components/custom/background";
+@import "./components/custom/settings";
 @import "./components/profile";
 @import "./components/form";
-
-.text-url {
-  color: $gray-600;
-}
-
-.text-v-center {
-  line-height: 50px;
-}
-
-.border-round {
-  border-radius: 50%;
-}
-
-.center {
-  margin: auto;
-}
-
-
+@import "./components/footer";
 
  
