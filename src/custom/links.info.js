@@ -18,7 +18,7 @@ const data = [
     {
         type: "site",
         name: "Personal website",
-        url: "https://definitelynotawebsite.website",
+        url: "https://thekrew.app",
         show: false,
         disclick: false
     },
