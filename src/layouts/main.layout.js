@@ -2,7 +2,6 @@ import {useState, useEffect, Suspense} from "react";
 import { Col, Container, Row } from "reactstrap";
 import Profile from "../components/profile.component"
 import Linkbox from "../components/linkbox.component";
-import Footer from "../components/footer.component";
 import Background from "../components/theme/background";
 
 const Admin = () => {
@@ -73,7 +72,6 @@ const Admin = () => {
           </Container>
         </div>
         <Background density={density}/>
-        <Footer project="https://github.com/the-krew/signpost" />
     </>
   );
 }
