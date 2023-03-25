@@ -3,7 +3,7 @@ import Background from "./theme/background";
 
 const Fallback = () => {
     const [limit, setLimit] = useState(false);
-    const [density, setDensity] = useState(950);
+    const [density, setDensity] = useState(100);
     const Mount = () => {
         let vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         if(vw < 1000) 
