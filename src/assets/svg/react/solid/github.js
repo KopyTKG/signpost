@@ -3,9 +3,9 @@ const React = require("react");
 function Github(props, {width}) {
   return /*#__PURE__*/React.createElement("svg", Object.assign({
     xmlns: "http://www.w3.org/2000/svg",
-    fill: "rgb(0%,0%,0%)",
+    fill: "#ffffff",
     viewBox: "0 0 25 25",
-    stroke: "currentColor",
+    stroke: "#ffffff",
     width: props.width,
     className: props.className,
     strokeWidth: 0
