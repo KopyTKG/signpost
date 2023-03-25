@@ -1,8 +1,8 @@
 import {useState} from "react";
 import { Col, Container, Row } from "reactstrap";
 import Linkbox from "components/linkbox.component";
-import input from "../../custom/links.info";
-import info from "../../custom/profile.info"
+import input from "../custom/links.info";
+import info from "../custom/profile.info"
 import Profile from "components/profile.component";
 import Footer from "components/footer.component";
 import Background from "components/theme/background";
