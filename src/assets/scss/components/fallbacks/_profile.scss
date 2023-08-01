@@ -1,0 +1,7 @@
+.f-profile {
+    border: .075rem solid map-get($map: $colors, $key: "darkwhite");
+    width: 22.5rem;
+    height: 22.5rem;
+    border-radius: 5rem;
+    @include shine-animation($speed: 10s, $angle: 60deg);
+}

@@ -1,0 +1,173 @@
+.p-2023-08-01 {
+    $SideBackgroundColor: #171717;
+    $SideActiveColor: #FFFFFF;
+    $SideContextColor: #A6A6A6;
+
+    $CardHeight: 40rem;
+    $CardWidth: 30rem;
+
+    $CardRadius: 2rem;
+
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    .master{
+        display: grid;
+        grid-template-columns: repeat(3, calc(($CardWidth*2)/3));
+    
+        .active {
+            $ActivePadding: 1.5rem;
+            width: $CardWidth;
+            height: calc($CardHeight - ($ActivePadding * 2));
+            background: linear-gradient(
+                325deg, 
+                #263600 5%,
+                #769400 100%);
+            border-radius: $CardRadius;
+            z-index: 1;
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            padding: $ActivePadding 0;
+            gap: 3.5rem;
+            .a-title {
+                color: $SideActiveColor;
+                font-size: 36px;
+                font-weight: bold;
+                justify-self: center;
+            }
+            .a-score {
+                justify-self: center;
+                width: 14rem;
+                height: 13rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: .5rem 0;
+                background-color: rgba($color: #eaffba, $alpha: 0.175);
+                border-radius: 50%;
+                .main {
+                    font-size: 72px;
+                    color:$SideActiveColor;
+                    font-weight: bolder;
+                }
+                .sub {
+                    font-size: 19px;
+                    color: $SideContextColor
+                }
+            }
+            .a-msg {
+                justify-self: center;
+                color: $SideActiveColor;
+                font-weight: bolder;
+                font-size: 32px;
+            }
+            .a-desc {
+                justify-self: center;
+                color: $SideActiveColor;
+                width: 15rem;
+                text-align: center;
+            }
+        }
+        .side {
+            width: calc($CardWidth*1.25);
+            height: calc($CardHeight);
+            border-radius: $CardRadius;
+            //border: 1px solid white;
+            background-color: $SideBackgroundColor;
+            color: $SideActiveColor;
+            .text {
+                margin-left: 10rem;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 3rem;
+                .s-title {
+                    color: $SideActiveColor;
+                    font-weight: bolder;
+                    font-size: 32px;
+                }
+                .bars  {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2rem;
+                    .s-bar {
+                        width: 100%;
+                        border-radius: .4rem;
+                        border: 2px solid rgba($color: #c0c0c0, $alpha: 0.25);
+                        height: 3.5rem;
+                        display: flex;
+                        justify-content: end;
+                    }
+                    .s-bar-name {
+                        height: 100%;
+                        width: calc(100% - 10rem);
+                        font-size: 20px;
+                        display: flex;
+                        font-weight: bold;
+                        align-items: center;
+                    }
+                    .s-bar-score {
+                        height: 100%;
+                        width: 5rem;
+                        display:flex ;
+                        align-items: center;
+                        justify-content: center;
+                        .user {
+                            font-size: 18px;
+                            font-weight: bold;
+                            color: $SideActiveColor;
+                            margin-right: .2rem;
+                            margin-top: 1px;
+                        }
+                        .total {
+                            font-size: 16px;
+                            color: $SideContextColor;
+                        }
+                    }
+                }
+                .s-button {
+                    align-self: center;
+                    height: 4rem;
+                    width: 15rem;
+                    border-radius: 5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 26px;
+                    color: #171717;
+                    font-weight: bold;
+                    background-color: #9EB984;
+
+                    &:hover {
+                        background-color: lighten(#9EB984, 10%);
+                        color: lighten(#171717, 10%);
+                        cursor: pointer;
+                    }
+                }
+            
+            }
+        }
+    }
+}
+
+.rec {
+    background-color: rgba($color: #FF79E2, $alpha: .05);
+    color:#FF62EF;  
+}
+
+.mem {
+    background-color: rgba($color: #FFC149, $alpha: .05);
+    color: #E7CD44;
+}
+
+.ver {
+    background-color: rgba($color: #5FFF82, $alpha: .05);
+    color: #00FF94;
+}
+
+.vis{
+    background-color: rgba($color: #2A25FF, $alpha: .05);
+    color: #52ACFF;
+}
