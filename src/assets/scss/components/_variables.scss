@@ -1,22 +1,70 @@
 /* Document settings */
-$DocumentHeight: 100vh;
-$DocumentWidth: 100vw;
+$CardRadius: 1rem;
+$CardWidth: 25rem;
+$CardHeigth: $CardWidth / 1.2;
+$CardPadding: 1rem;
 
 /* Main background settings */
+$PrimaryColor: #B4CE4C;
+$AccientColor: #EAF698;
+$SecondaryColor: #0C0C0C;
+$NoiseColor: #171717;
 
-$MainTop: rgb(0,0,0);
-$MainBottom: rgb(34, 34, 34);
 
-/* sky background settings */
+/* Colors map */
+$colors: (
+    "darkorange": #FFB156,
+    "lightorange":#F6DC98,
+    "darkgreen":  #B4CE4C,
+    "lightgreen": #EAF698,
+    "darkred":    #FF5656,
+    "lightred":   #F6A998,
+    "darkblue":   #56A4FF,
+    "lightblue":  #98E5F6,
+    "darkgray":   #747474,
+    "lightgray":  #D2D2D2,
+    "lightwhite": #FFFFFF,
+    "darkwhite":  #d4d4d4,
+    "darkblack":  #0C0C0C,
+    "lightblack": #171717
+);
 
-$DarkTop: rgb(0,0,0);
-$DarkBottom: rgb(4, 0, 44);
-$LightTop: rgb(5, 0, 65);
-$LightBottom: rgb(28, 62, 94);
+$type: (
+    "primary"   : map-get($colors, "darkblue"),
+    "secondary" : map-get($colors, "lightgray"),
+    "success"   : map-get($colors, "darkgreen"),
+    "warning"   : map-get($colors, "darkorange"),
+    "error"     : map-get($colors, "darkred")
+);
 
-// Custom variables
-$form-padding: 1em;
-$layout-blue: #119ce2;
-$gray-600: #6c757d;
+$font-sizes : (
+    "xs": 0.75rem,
+    "sm": 1rem,
+    "md": 1.5rem,
+    "lg": 2rem,
+    "xl": 2.5rem,
+    "xxl": 3rem
+);
 
-$text: white;
+$font-weights: (
+    "lighter": 200,
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "bold": 600,
+    "bolder": 900
+);
+
+
+/* Padding */
+$btn: (
+    "top": 1rem,
+    "left": 1.5rem
+);
+$btn-rounded: (
+    "top": .1rem,
+    "left": .6rem
+);
+
+
+$FallbackAccentColor: map-get($colors, "darkblue");

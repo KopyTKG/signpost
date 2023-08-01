@@ -1,24 +1,23 @@
 import React,{Suspense} from "react";
-import { NotificationContainer } from "react-notifications";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Fallback from "../components/fallback";
+import Fallback from "../components/backup/loading.site";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
-    const Layout = React.lazy(() => import("../layouts/main.layout"))
+
+function Router() {
+    const Home = React.lazy(() => import("../pages/home"))
     return(
         <> 
         <BrowserRouter>
-            <NotificationContainer />
             <Routes>
                 <Route path="/" element={
-                    <Suspense fallback={<Fallback />}>
-                        <Layout/>
-                    </Suspense>
-                }>
-                </Route>
+                   <Suspense fallback={<Fallback />}>
+                       <Home/>
+                   </Suspense>
+                }/>
             </Routes>
         </BrowserRouter>
         </>
     );
 }
+
+export default Router;
