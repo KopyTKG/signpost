@@ -1,6 +1,7 @@
-import '../assets/scss/index.scss'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import '../assets/scss/index.scss';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className='darkblue-color bold-text md-text flex float-right'> Future button here </nav>
+        <nav className='darkblue-color bold-text md-text flex float-right'>
+          <div className='nav-share' >
+            <img src='/share.svg' alt='An SVG for share icon'/>
+          </div>
+        </nav>
         {children}
       </body>
     </html>
