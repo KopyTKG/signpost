@@ -1,6 +1,9 @@
 # Rework in progress
 
-### Update 2023-08-02 (First issue)
+### Update 2023-08-02 (#19 issue)
+* Creating new fallback element for links placeholder
+
+### Update 2023-08-02 (#20 issue)
 * More cleanup
 * Scaling down profile fallback element
 * Creating new fallback element for name placeholder
