@@ -1,4 +1,6 @@
 # Rework in progress
+## Update 2023-08-02 (Framework change)
+* Project was migrated to Next.JS
 
 ### Update 2023-08-02 (#19 issue)
 * Creating new fallback element for links placeholder
