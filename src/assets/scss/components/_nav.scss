@@ -1,0 +1,14 @@
+.nav-share {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4rem;
+    border: .5rem solid white;
+    border-radius: 4rem;
+    img {
+        width: 1.75rem;
+        height: 1.75rem;
+        background-color: transparent;
+    }
+}
