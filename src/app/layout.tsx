@@ -1,30 +1,23 @@
-import '../assets/scss/index.scss';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
-
-const inter = Inter({ subsets: ['latin'] })
+import './globals.css'
+import type { Metadata } from 'next'
+import React from 'react'
+import { GeistSans } from 'geist/font/sans'
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
-  title: 'Signpost',
-  description: 'Opensource replica of LinkTree',
+ title: 'Signpost',
+ description: 'Opensource replica of LinkTree',
+ creator: 'KopyTKG',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <nav className='darkblue-color bold-text md-text flex float-right'>
-          <div className='nav-share' >
-            <img src='/share.svg' alt='An SVG for share icon'/>
-          </div>
-        </nav>
-        {children}
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+ return (
+  <html lang="en">
+   <body className={GeistSans.className}>
+    <Providers>
+     <main className="w-screen min-h-screen bg-zinc-900">{children}</main>
+    </Providers>
+   </body>
+  </html>
+ )
 }
