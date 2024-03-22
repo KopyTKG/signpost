@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   <html lang="en">
    <body className={GeistSans.className}>
     <Providers>
-     <main className="w-screen min-h-screen bg-zinc-900">{children}</main>
+     <main className="min-h-screen bg-zinc-900">{children}</main>
     </Providers>
    </body>
   </html>

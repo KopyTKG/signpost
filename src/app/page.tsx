@@ -1,10 +1,12 @@
-import { Link, LinkIcon } from '@/components/slot'
+'use client'
+import { Link, LinkIcon, LinkText } from '@/components/slot'
 import Image from 'next/image'
 
 export default function Home() {
+ const temp = Array.from({ length: 100 }, (_, i) => i)
  return (
   <>
-   <div className="w-screen flex justify-center py-10">
+   <div className=" w-full flex justify-center py-10">
     <div className="flex flex-col justify-center items-center">
      <div className="w-24 h-24 border-2 rounded-full overflow-hidden">
       <Image
@@ -19,15 +21,14 @@ export default function Home() {
     </div>
    </div>
    <div className="max-w-3xl mx-auto px-5 flex flex-col gap-5">
-    <Link color="light" radius="soft" className="flex justify-start">
-     <LinkIcon radius="soft" />
-    </Link>
-    <Link color="light" radius="soft" className="flex justify-start">
-     <LinkIcon radius="soft" />
-    </Link>
-    <Link color="light" radius="soft" className="flex justify-start">
-     <LinkIcon radius="soft" />
-    </Link>
+    {temp.map((i) => (
+     <Link key={i} color="light" radius="rounded" className="flex justify-start">
+      <LinkIcon radius="rounded" />
+      <LinkText font="medium" color="light">
+       Testing link - medium
+      </LinkText>
+     </Link>
+    ))}
    </div>
   </>
  )
