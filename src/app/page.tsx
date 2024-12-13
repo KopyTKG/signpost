@@ -1,4 +1,4 @@
-import { Link, LinkIcon, LinkText } from '@/components/slot'
+import { Link, LinkIcon, LinkText } from '@/components/ui/slot'
 import Image from 'next/image'
 
 interface LinkItem {
@@ -11,7 +11,7 @@ export default async function Home() {
  let data: LinkItem[] = []
  let error: string | null = null
 
- let url = process.env.GIST
+ const url = process.env.GIST
  if (!url) {
   error = 'missing gist url'
  }
@@ -31,6 +31,7 @@ export default async function Home() {
   try {
    data = JSON.parse(text)
   } catch (e) {
+   console.error(e)
    throw new Error('Failed to parse JSON')
   }
  } catch (e) {

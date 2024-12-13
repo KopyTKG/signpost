@@ -16,7 +16,7 @@ const compat = new FlatCompat({
 const settings = [
  { files: ['**/*.{jsx,ts,tsx}'] },
  {
-  files: ['**/*.{js,cjs}'],
+  files: ['**/*.{mjs,js,cjs}'],
   languageOptions: {
    sourceType: 'commonjs',
    ecmaVersion: 12,
