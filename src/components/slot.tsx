@@ -68,6 +68,7 @@ export interface SlotProps
   VariantProps<typeof slotVariants> {
  color?: 'dark' | 'light'
  radius?: 'soft' | 'rounded' | 'square' | 'full'
+ time: number
 }
 
 export interface ImageProps
@@ -83,26 +84,37 @@ export interface ParagraphProps
  asChild?: boolean
  color?: 'dark' | 'light'
  font?: 'soft' | 'normal' | 'medium' | 'bold'
+ href: string
 }
 
 const Link = React.forwardRef<HTMLDivElement, SlotProps>(
- ({ className, color, radius, ...props }, ref) => {
+ ({ className, color, radius, time, ...props }, ref) => {
   return (
    <AnimatePresence>
     <motion.div
+     initial={{ opacity: 0, y: -20 }}
+     animate={{ opacity: 1, y: 0 }}
+     exit={{ opacity: 0, y: -20 }}
+     transition={{
+      duration: 0.5,
+      delay: time * 0.02,
+     }}
      whileHover={{ scale: 1.05 }}
      onHoverStart={(_e) => {}}
      onHoverEnd={(_e) => {}}
      className={cn(slotVariants({ color, radius, className }))}
-     ref={ref}>
+     ref={ref}
+    >
      {props.children}
-     <Image
-      src={'/svg/share.svg'}
-      width={200}
-      height={200}
-      alt="share-svg"
-      className=" block -z-10 w-8 h-8 p-1 rounded-full group-hover:z-10 hover:bg-gray-400/50 "
-     />
+     <div className="w-12 h-12 flex justify-center items-center block hover:block z-100 bg-red-50">
+      <Image
+       src={'/svg/share.svg'}
+       width={200}
+       height={200}
+       alt="share-svg"
+       className="w-8 h-8 p-1 rounded-full hover:bg-gray-400/50 "
+      />
+     </div>
     </motion.div>
    </AnimatePresence>
   )
@@ -125,9 +137,18 @@ const LinkIcon = React.forwardRef<HTMLImageElement, ImageProps>(
 )
 LinkIcon.displayName = 'LinkIcon'
 
+function RedirectTo(href: string) {
+ window.location.assign(href)
+}
+
 const LinkText = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
- ({ className, color, font, ...props }, ref) => (
-  <p ref={ref} className={cn(ParagraphVariants({ color, font, className }))} {...props} />
+ ({ className, color, font, href, ...props }, ref) => (
+  <p
+   onClick={() => RedirectTo(href)}
+   ref={ref}
+   className={cn(ParagraphVariants({ color, font, className }))}
+   {...props}
+  />
  ),
 )
 LinkText.displayName = 'LinkText'
