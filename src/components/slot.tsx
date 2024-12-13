@@ -7,15 +7,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cva, type VariantProps } from 'class-variance-authority'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import {
+ DropdownMenu,
+ DropdownMenuContent,
+ DropdownMenuItem,
+ DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
 const slotVariants = cva(
- 'w-full h-16 rounded-md hover:translate-z-10 group flex items-center pr-5',
+ 'w-full h-16 hover:translate-z-10 group flex items-center pr-5 border border-neutral-200 bg-white text-neutral-950 shadow-md dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 ',
  {
   variants: {
-   color: {
-    dark: 'bg-stone-800',
-    light: 'bg-slate-200',
-   },
    radius: {
     soft: 'rounded-md',
     rounded: 'rounded-2xl',
@@ -24,7 +26,6 @@ const slotVariants = cva(
    },
   },
   defaultVariants: {
-   color: 'dark',
    radius: 'soft',
   },
  },
@@ -46,10 +47,6 @@ const ImageVariants = cva('aspect-square object-contain h-full w-max p-1', {
 
 const ParagraphVariants = cva('w-full flex justify-center items-center text-justify', {
  variants: {
-  color: {
-   dark: 'text-stone-200',
-   light: 'text-slate-800',
-  },
   font: {
    soft: ' font-thin',
    normal: 'font-normal',
@@ -59,16 +56,15 @@ const ParagraphVariants = cva('w-full flex justify-center items-center text-just
  },
  defaultVariants: {
   font: 'soft',
-  color: 'light',
  },
 })
 
 export interface SlotProps
  extends React.HTMLAttributes<HTMLDivElement>,
   VariantProps<typeof slotVariants> {
- color?: 'dark' | 'light'
  radius?: 'soft' | 'rounded' | 'square' | 'full'
  time: number
+ href: string
 }
 
 export interface ImageProps
@@ -79,16 +75,19 @@ export interface ImageProps
 }
 
 export interface ParagraphProps
- extends React.ParamHTMLAttributes<HTMLParagraphElement>,
+ extends React.ParamHTMLAttributes<HTMLAnchorElement>,
   VariantProps<typeof ParagraphVariants> {
  asChild?: boolean
- color?: 'dark' | 'light'
  font?: 'soft' | 'normal' | 'medium' | 'bold'
  href: string
 }
 
+function CopyToClipboard(href: string) {
+ navigator.clipboard.writeText(href)
+}
+
 const Link = React.forwardRef<HTMLDivElement, SlotProps>(
- ({ className, color, radius, time, ...props }, ref) => {
+ ({ className, radius, time, href, ...props }, ref) => {
   return (
    <AnimatePresence>
     <motion.div
@@ -99,22 +98,36 @@ const Link = React.forwardRef<HTMLDivElement, SlotProps>(
       duration: 0.5,
       delay: time * 0.02,
      }}
-     whileHover={{ scale: 1.05 }}
-     onHoverStart={(_e) => {}}
-     onHoverEnd={(_e) => {}}
-     className={cn(slotVariants({ color, radius, className }))}
-     ref={ref}
     >
-     {props.children}
-     <div className="w-12 h-12 flex justify-center items-center block hover:block z-100 bg-red-50">
-      <Image
-       src={'/svg/share.svg'}
-       width={200}
-       height={200}
-       alt="share-svg"
-       className="w-8 h-8 p-1 rounded-full hover:bg-gray-400/50 "
-      />
-     </div>
+     <motion.div
+      whileHover={{ scale: 1.05 }}
+      onHoverStart={(_e) => {}}
+      onHoverEnd={(_e) => {}}
+      ref={ref}
+      className={cn(slotVariants({ radius, className }))}
+     >
+      {props.children}
+      <motion.div
+       initial={{ opacity: 0, scale: 0.8 }}
+       whileHover={{ opacity: 1, scale: 1 }}
+       className="w-12 h-12 flex justify-center items-center rounded-full cursor-pointer"
+      >
+       <DropdownMenu>
+        <DropdownMenuTrigger>
+         <Image
+          src="/svg/share.svg"
+          width={30}
+          height={30}
+          alt="share-svg"
+          className="w-10 h-8 p-1 rounded-full hover:bg-gray-400/20 transition-colors"
+         />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+         <DropdownMenuItem onClick={() => CopyToClipboard(href)}>Share</DropdownMenuItem>
+        </DropdownMenuContent>
+       </DropdownMenu>
+      </motion.div>
+     </motion.div>
     </motion.div>
    </AnimatePresence>
   )
@@ -137,16 +150,13 @@ const LinkIcon = React.forwardRef<HTMLImageElement, ImageProps>(
 )
 LinkIcon.displayName = 'LinkIcon'
 
-function RedirectTo(href: string) {
- window.location.assign(href)
-}
-
-const LinkText = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
- ({ className, color, font, href, ...props }, ref) => (
-  <p
-   onClick={() => RedirectTo(href)}
+const LinkText = React.forwardRef<HTMLAnchorElement, ParagraphProps>(
+ ({ className, font, href, ...props }, ref) => (
+  <a
+   href={href}
    ref={ref}
-   className={cn(ParagraphVariants({ color, font, className }))}
+   rel="noreffer"
+   className={cn(ParagraphVariants({ font, className }))}
    {...props}
   />
  ),
