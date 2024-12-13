@@ -1,4 +1,7 @@
 # Rework in progress
+## Update 2024-12-13 
+* Adding connection to GIST
+
 ## Update 2023-08-02 (Framework change)
 * Project was migrated to Next.JS
 
