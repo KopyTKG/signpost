@@ -11,8 +11,12 @@ export default async function Home() {
  let data: LinkItem[] = []
  let error: string | null = null
 
+ let url = process.env.GIST
+ if (!url) {
+  error = 'missing gist url'
+ }
  try {
-  const res = await fetch('https://gist.github.com/KopyTKG/920c0e87dcaedc5ce158fe67c6896ed4/raw', {
+  const res = await fetch(url, {
    method: 'GET',
    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
    next: { revalidate: 3600 },
