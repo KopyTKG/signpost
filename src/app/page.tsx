@@ -7,16 +7,40 @@ interface LinkItem {
  icon: string
 }
 
+interface UserItem {
+ profile: string
+ name: string
+}
+
 export default async function Home() {
  let data: LinkItem[] = []
+ let user: UserItem = { profile: '', name: '' }
  let error: string | null = null
 
- const url = process.env.GIST
- if (!url) {
-  error = 'missing gist url'
- }
  try {
-  const res = await fetch(url, {
+  const res = await fetch(process.env.GIST, {
+   method: 'GET',
+   headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+   next: { revalidate: 3600 },
+  })
+
+  if (!res.ok) {
+   throw new Error(`HTTP error! status: ${res.status}`)
+  }
+
+  const text = await res.text()
+  try {
+   data = JSON.parse(text)
+  } catch (e) {
+   console.error(e)
+   throw new Error('Failed to parse JSON')
+  }
+ } catch (e) {
+  error = e instanceof Error ? e.message : 'An unknown error occurred'
+ }
+
+ try {
+  const res = await fetch(process.env.PROFILE, {
    method: 'GET',
    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
    next: { revalidate: 3600 },
@@ -29,7 +53,7 @@ export default async function Home() {
   const text = await res.text()
 
   try {
-   data = JSON.parse(text)
+   user = JSON.parse(text)
   } catch (e) {
    console.error(e)
    throw new Error('Failed to parse JSON')
@@ -50,9 +74,9 @@ export default async function Home() {
    <div className=" w-full flex justify-center py-10">
     <div className="flex flex-col justify-center items-center">
      <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-neutral-200 dark:border-neutral-800 shadow-md">
-      <Image src={'https://picsum.photos/200'} alt="logo" width={200} height={200} />
+      <Image src={user.profile} alt="logo" width={200} height={200} />
      </div>
-     <h1 className="text-2xl font-bold text-neutral-950 dark:text-neutral-50">@Signpost</h1>
+     <h1 className="text-2xl font-bold text-neutral-950 dark:text-neutral-50">{user.name}</h1>
     </div>
    </div>
    <div className="max-w-3xl mx-auto px-5 flex flex-col gap-5">
