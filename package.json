@@ -1,6 +1,6 @@
 {
   "name": "signpost",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "NextJS implementation of self-hosted linktree",
   "private": false,
   "license": "CC0-1.0",
