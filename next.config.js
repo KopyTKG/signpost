@@ -1,16 +1,17 @@
 /** @type {import('next').NextConfig} */
 const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
+    script-src 'self' 'unsafe-eval';
+    style-src 'self';
     img-src 'self' blob: data:;
-    font-src 'self' data:;
+    font-src 'self';
     object-src 'none';
     base-uri 'self';
     form-action 'self';
     frame-ancestors 'none';
+    block-all-mixed-content;
     upgrade-insecure-requests;
-    connect-src 'self' __API__;
+    connect-src 'self';
 `
 
 const nextConfig = {
@@ -31,14 +32,6 @@ const nextConfig = {
  eslint: {
   ignoreDuringBuilds: true,
  },
- transpilePackages: ['lucide-react'],
- env: {
-  NEXT_PUBLIC_BASE: process.env.NEXT_PUBLIC_BASE,
-  NEXT_PUBLIC_TIME_GAP: process.env.NEXT_PUBLIC_TIME_GAP,
-  BASE: process.env.NEXT_PUBLIC_BASE,
-  STAG_SERVER: process.env.STAG_SERVE,
-  API: process.env.API,
- },
  async headers() {
   return [
    {
@@ -46,11 +39,11 @@ const nextConfig = {
     headers: [
      {
       key: 'Access-Control-Allow-Origin',
-      value: process.env.NEXT_PUBLIC_BASE || '*',
+      value: process.env.DOMAIN || '*',
      },
      {
       key: 'Access-Control-Allow-Methods',
-      value: 'GET, POST, PUT, DELETE, OPTIONS',
+      value: 'GET, OPTIONS',
      },
      {
       key: 'Access-Control-Allow-Headers',
@@ -58,11 +51,11 @@ const nextConfig = {
      },
      {
       key: 'Content-Security-Policy',
-      value: cspHeader.replace(/\n/g, ''),
+      value: cspHeader.replace(/\s{2,}/g, ' ').trim(),
      },
      {
       key: 'X-Frame-Options',
-      value: 'SAMEORIGIN',
+      value: 'DENY',
      },
      {
       key: 'X-Content-Type-Options',
@@ -83,6 +76,10 @@ const nextConfig = {
      {
       key: 'Strict-Transport-Security',
       value: 'max-age=63072000; includeSubDomains; preload',
+     },
+     {
+      key: 'X-XSS-Protection',
+      value: '1; mode=block',
      },
     ],
    },
