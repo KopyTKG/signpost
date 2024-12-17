@@ -1,19 +1,4 @@
 /** @type {import('next').NextConfig} */
-const cspHeader = `
-    default-src 'self';
-    script-src 'self';
-    style-src 'self';
-    img-src 'self' blob: data:;
-    font-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-    connect-src 'self';
-`
-
 const nextConfig = {
  images: {
   remotePatterns: [
@@ -48,10 +33,6 @@ const nextConfig = {
      {
       key: 'Access-Control-Allow-Headers',
       value: 'Content-Type, Authorization',
-     },
-     {
-      key: 'Content-Security-Policy',
-      value: cspHeader.replace(/\s{2,}/g, ' ').trim(),
      },
      {
       key: 'X-Frame-Options',
