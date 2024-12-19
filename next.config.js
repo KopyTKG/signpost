@@ -24,7 +24,7 @@ const nextConfig = {
     headers: [
      {
       key: 'Access-Control-Allow-Origin',
-      value: process.env.DOMAIN || '*',
+      value: process.env.DOMAIN || 'null',
      },
      {
       key: 'Access-Control-Allow-Methods',
