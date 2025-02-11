@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
  const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
  const cspHeader = `
     default-src 'self';
     script-src 'self' 'nonce-${nonce}' 'unsafe-eval' https://va.vercel-scripts.com https://vercel.live;
-    style-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' 'nonce-${nonce}';
     img-src 'self' blob: data: https:;
     font-src 'self';
     object-src 'none';
@@ -15,14 +15,13 @@ export function middleware(request: NextRequest) {
     frame-ancestors 'none';
     block-all-mixed-content;
     upgrade-insecure-requests;
-    connect-src 'self' https://va.vercel-scripts.com;
+    connect-src 'self' https://va.vercel-scripts.com ws: wss: https:;
   `
 
  const contentSecurityPolicyHeaderValue = cspHeader.replace(/\s{2,}/g, ' ').trim()
 
  const requestHeaders = new Headers(request.headers)
  requestHeaders.set('x-nonce', nonce)
-
  requestHeaders.set('Content-Security-Policy', contentSecurityPolicyHeaderValue)
 
  const response = NextResponse.next({
@@ -30,12 +29,19 @@ export function middleware(request: NextRequest) {
    headers: requestHeaders,
   },
  })
-
  response.headers.set('Content-Security-Policy', contentSecurityPolicyHeaderValue)
 
  return response
 }
 
 export const config = {
- matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+ matcher: [
+  {
+   source: '/((?!api|_next/static|_next/image|favicon.ico).*)',
+   missing: [
+    { type: 'header', key: 'next-router-prefetch' },
+    { type: 'header', key: 'purpose', value: 'prefetch' },
+   ],
+  },
+ ],
 }
