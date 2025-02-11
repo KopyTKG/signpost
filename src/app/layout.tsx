@@ -5,7 +5,7 @@ import { GeistSans } from 'geist/font/sans'
 import { Providers } from './providers'
 import { ThemeProvider } from '@/components/theme-provider'
 import { headers } from 'next/headers'
-import Script from 'next/script'
+import InteractiveGrid from '@/components/interactive-grid'
 
 export const metadata: Metadata = {
  title: 'Signpost',
@@ -25,16 +25,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
    <body className={`${GeistSans.className} bg-neutral-50 dark:bg-black`}>
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
      <Providers>
+      <InteractiveGrid />
       <main>{children}</main>
      </Providers>
     </ThemeProvider>
-    <Script
-     nonce={nonce}
-     id="my-script"
-     dangerouslySetInnerHTML={{
-      __html: `console.log('This inline script is allowed because it has the correct nonce')`,
-     }}
-    />
    </body>
   </html>
  )
